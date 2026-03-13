@@ -5,13 +5,12 @@ import { ArrowLeft } from "lucide-react";
 import AddToCartForm from "./_components/AddToCartForm";
 import StorefrontNavbar from "@/components/StorefrontNavbar";
 import { CartProvider } from "@/components/CartProvider";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 import { getProductBySlug, getProducts } from "@/lib/data";
+import { getUser } from "@/lib/dal";
 
 export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
-  const [session, products] = await Promise.all([
-    auth.api.getSession({ headers: await headers() }),
+  const [user, products] = await Promise.all([
+    getUser(),
     getProducts(),
   ]);
 
@@ -24,7 +23,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
   return (
     <CartProvider>
       <div className="min-h-screen bg-neutral-50 flex flex-col">
-        <StorefrontNavbar user={session?.user} products={products} />
+        <StorefrontNavbar user={user!} products={products} />
 
         <main className="flex-1 max-w-5xl mx-auto w-full p-4 lg:p-6 pb-32">
           <Link href="/" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 mb-6 font-medium transition-colors">

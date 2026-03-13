@@ -18,12 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://kim-2026.vercel.app/'),
+  metadataBase: new URL('https://kim-2026.vercel.app'),
   title: "Kim Coffee & Fruit Tea",
   description: "Thơm vị cà phê - mát lành trái cây",
-  other: {
-    "zalo-platform-site-verification": "N8QI8gUgF2HGcQyVqkO-21l4b0xtia1OCJSv",
-  },
 };
 
 export default function RootLayout({
@@ -32,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", inter.variable)} suppressHydrationWarning>
+    <html lang="vi" className={cn("font-sans", inter.variable)} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -1,22 +1,25 @@
 import { CartProvider } from "@/components/CartProvider";
 import { CategoryList } from "@/components/CategoryList";
 import { NavbarContainer } from "@/components/NavbarContainer";
+import Footer from "@/components/Footer";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function StorefrontPage() {
   return (
     <CartProvider>
-      <div className="min-h-screen bg-neutral-50 pb-20">
+      <div className="min-h-screen bg-neutral-50 flex flex-col">
         <Suspense fallback={<NavbarSkeleton />}>
           <NavbarContainer />
         </Suspense>
 
-        <main className="max-w-5xl mx-auto px-4 lg:px-6 py-8">
+        <main className="flex-grow w-full max-w-5xl mx-auto px-4 lg:px-6 py-8">
           <Suspense fallback={<CategoryListSkeleton />}>
             <CategoryList />
           </Suspense>
         </main>
+        
+        <Footer />
       </div>
     </CartProvider>
   );

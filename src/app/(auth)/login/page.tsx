@@ -1,8 +1,10 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 import { Coffee } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,6 +12,8 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     setIsLoading(true);
     try {
+      // Clear cart on login
+      localStorage.removeItem("fb_cart");
       await authClient.signIn.social({
         provider: "google",
       });
@@ -61,7 +65,7 @@ export default function LoginPage() {
           </div>
 
           {/* Google Login Button */}
-          <button
+          <Button
             onClick={handleGoogleLogin}
             disabled={isLoading}
             className="group w-full bg-white hover:bg-neutral-50 text-neutral-700 rounded-2xl py-3.5 px-4 font-semibold text-[15px] transition-all duration-200 flex items-center justify-center gap-3 disabled:opacity-70 border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md active:scale-[0.98]"
@@ -89,18 +93,18 @@ export default function LoginPage() {
               </svg>
             )}
             {isLoading ? "Đang kết nối..." : "Tiếp tục với Google"}
-          </button>
+          </Button>
 
           {/* Terms */}
           <p className="text-[11px] text-neutral-400 mt-6 leading-relaxed">
             Đăng nhập đồng nghĩa bạn đồng ý với{" "}
-            <span className="text-amber-700/70 hover:text-amber-700 cursor-pointer transition-colors">
+            <Link href="/terms" className="text-amber-700/70 hover:text-amber-700 cursor-pointer transition-colors">
               Điều khoản
-            </span>{" "}
+            </Link>{" "}
             và{" "}
-            <span className="text-amber-700/70 hover:text-amber-700 cursor-pointer transition-colors">
+            <Link href="/privacy" className="text-amber-700/70 hover:text-amber-700 cursor-pointer transition-colors">
               Chính sách bảo mật
-            </span>{" "}
+            </Link>{" "}
             của chúng tôi.
           </p>
         </div>

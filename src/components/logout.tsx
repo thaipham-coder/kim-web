@@ -9,6 +9,8 @@ export function Logout() {
     const router = useRouter();
 
     const handleLogout = async () => {
+        // Clear cart on logout
+        localStorage.removeItem("fb_cart");
         await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
