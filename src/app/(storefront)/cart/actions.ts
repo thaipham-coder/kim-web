@@ -1,9 +1,8 @@
 "use server";
 
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { OrderStatus, PaymentMethod } from "@/generated/prisma";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { verifySession } from "@/lib/dal";
 
 export async function createOrder(formData: FormData) {
   try {
@@ -28,7 +27,7 @@ export async function createOrder(formData: FormData) {
     const orderNumber = `ORD-${new Date().getTime().toString().slice(-4)}${(count + 1).toString().padStart(3, '0')}`;
 
     // Lấy session để gắn userId (cho phép đặt hàng khi chưa đăng nhập)
-    const session = await auth.api.getSession({ headers: await headers() });
+    const session = await verifySession()
 
     const order = await prisma.order.create({
       data: {

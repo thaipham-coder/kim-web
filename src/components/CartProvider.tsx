@@ -81,7 +81,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
-  const clearCart = () => setItems([]);
+  const clearCart = () => {
+    setItems([]);
+    localStorage.removeItem("fb_cart");
+  };
 
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
   const totalPrice = items.reduce((sum, i) => sum + i.itemTotal, 0);

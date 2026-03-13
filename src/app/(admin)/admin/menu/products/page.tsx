@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import Link from "next/link";
 import { ArrowLeft, Plus, Trash2, Edit, CheckCircle2, XCircle } from "lucide-react";
 import { deleteProduct, toggleProductAvailability } from "./actions";

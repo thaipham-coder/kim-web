@@ -3,12 +3,18 @@ import { Suspense } from "react";
 import { User, ShoppingBag } from "lucide-react";
 import { AccountNavLink } from "./_components/AccountNavLink";
 import { CartProvider } from "@/components/CartProvider";
+import { verifySession } from "@/lib/dal";
+import { redirect } from "next/navigation";
 
-export default function AccountLayout({
+export default async function AccountLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await verifySession()
+
+  if (!session) redirect("/login")
+
   return (
     <CartProvider>
       <div className="min-h-screen bg-neutral-50 pb-20">

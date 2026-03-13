@@ -13,11 +13,11 @@ export default function CheckoutClient() {
   const { items, totalPrice, totalItems, clearCart } = useCart();
   const router = useRouter();
 
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(PaymentMethod.COD);
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(PaymentMethod.ZALOPAY);
   const [isTakeaway, setIsTakeaway] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   // ZaloPay QR State
   const [orderUrl, setOrderUrl] = useState<string | null>(null);
   const [appTransId, setAppTransId] = useState<string | null>(null);
@@ -35,7 +35,7 @@ export default function CheckoutClient() {
           body: JSON.stringify({ appTransId }),
         });
         const data = await res.json();
-        
+
         if (data.return_code === 1) {
           setZpStatus("success");
           clearCart();
@@ -112,11 +112,11 @@ export default function CheckoutClient() {
         // Flow cũ cho COD, Chuyển khoản
         const result = await createOrder(formData);
         if (result?.error) {
-           setError(result.error);
+          setError(result.error);
         } else if (result?.success) {
-           clearCart();
-           // Hiện tại hệ thống chưa có trang checkout success riêng cho COD
-           router.push("/"); 
+          clearCart();
+          // Hiện tại hệ thống chưa có trang checkout success riêng cho COD
+          router.push("/");
         }
       }
     } catch (err: any) {
@@ -139,14 +139,14 @@ export default function CheckoutClient() {
             <p className="text-neutral-500 mb-8 text-center max-w-sm">
               Sử dụng ứng dụng Zalo hoặc ZaloPay để quét mã QR bên dưới và hoàn tất thanh toán.
             </p>
-            
+
             <div className="p-4 bg-white border-2 border-dashed border-blue-200 rounded-3xl mb-8">
-               <QRCodeSVG value={orderUrl} size={256} className="rounded-xl" />
+              <QRCodeSVG value={orderUrl} size={256} className="rounded-xl" />
             </div>
 
             <div className="flex items-center gap-3 text-blue-600 bg-blue-50 px-4 py-3 rounded-xl font-medium">
-               <Loader2 className="w-5 h-5 animate-spin" />
-               Đang chờ Quý khách thanh toán...
+              <Loader2 className="w-5 h-5 animate-spin" />
+              Đang chờ Quý khách thanh toán...
             </div>
 
             {zpStatus === "failed" && (
@@ -154,8 +154,8 @@ export default function CheckoutClient() {
                 Giao dịch bị từ chối hoặc thất bại. Vui lòng thử lại.
               </div>
             )}
-            
-            <button 
+
+            <button
               onClick={() => { setOrderUrl(null); setZpStatus(null); }}
               className="mt-8 text-neutral-500 hover:text-neutral-900 flex items-center gap-2"
             >
@@ -173,7 +173,7 @@ export default function CheckoutClient() {
 
             <div>
               <h2 className="text-xl font-bold text-neutral-900 mb-6">Thông tin giao hàng</h2>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 mb-1.5">Họ tên *</label>
@@ -212,9 +212,9 @@ export default function CheckoutClient() {
             <div>
               <h2 className="text-xl font-bold text-neutral-900 mb-6 flex items-center gap-2">Phương thức thanh toán</h2>
               <input type="hidden" name="paymentMethod" value={paymentMethod} />
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <label className={`relative flex flex-col items-center justify-center p-6 rounded-2xl border-2 cursor-pointer transition-all ${paymentMethod === PaymentMethod.COD ? 'border-neutral-900 bg-neutral-50/50' : 'border-neutral-100 hover:border-neutral-200 hover:bg-neutral-50/50'} group`}>
+                {/* <label className={`relative flex flex-col items-center justify-center p-6 rounded-2xl border-2 cursor-pointer transition-all ${paymentMethod === PaymentMethod.COD ? 'border-neutral-900 bg-neutral-50/50' : 'border-neutral-100 hover:border-neutral-200 hover:bg-neutral-50/50'} group`}>
                   <HandCoins className={`w-8 h-8 mb-3 transition-colors ${paymentMethod === PaymentMethod.COD ? 'text-neutral-900' : 'text-neutral-400 group-hover:text-neutral-600'}`} />
                   <span className={`font-medium text-center ${paymentMethod === PaymentMethod.COD ? 'text-neutral-900' : 'text-neutral-500'}`}>Tiền mặt (COD)</span>
                   <input type="radio" className="sr-only" name="paymentType" checked={paymentMethod === PaymentMethod.COD} onChange={() => setPaymentMethod(PaymentMethod.COD)} />
@@ -224,7 +224,7 @@ export default function CheckoutClient() {
                   <Landmark className={`w-8 h-8 mb-3 transition-colors ${paymentMethod === PaymentMethod.BANK_TRANSFER ? 'text-neutral-900' : 'text-neutral-400 group-hover:text-neutral-600'}`} />
                   <span className={`font-medium text-center ${paymentMethod === PaymentMethod.BANK_TRANSFER ? 'text-neutral-900' : 'text-neutral-500'}`}>Chuyển khoản</span>
                   <input type="radio" className="sr-only" name="paymentType" checked={paymentMethod === PaymentMethod.BANK_TRANSFER} onChange={() => setPaymentMethod(PaymentMethod.BANK_TRANSFER)} />
-                </label>
+                </label> */}
 
                 <label className={`relative flex flex-col items-center justify-center p-6 rounded-2xl border-2 cursor-pointer transition-all ${paymentMethod === PaymentMethod.ZALOPAY ? 'border-blue-500 bg-blue-50/30' : 'border-neutral-100 hover:border-blue-200 hover:bg-blue-50/10'} group`}>
                   <span className={`absolute top-0 right-0 py-0.5 px-2.5 bg-red-500 text-white text-[10px] font-bold tracking-wider rounded-bl-xl rounded-tr-xl uppercase shadow-sm ${paymentMethod === PaymentMethod.ZALOPAY ? '' : 'opacity-80'}`}>Hot</span>
@@ -245,7 +245,7 @@ export default function CheckoutClient() {
             Đơn hàng của bạn
             <Link href="/cart" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors">Sửa</Link>
           </h3>
-          
+
           <div className="space-y-4 mb-6 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
             {items.map((item) => (
               <div key={item.id} className="flex gap-3 items-start">
@@ -265,23 +265,23 @@ export default function CheckoutClient() {
           </div>
 
           <div className="space-y-3 pt-4 border-t border-neutral-100 pb-4">
-             <div className="flex justify-between text-neutral-600 text-sm">
-                <span>Tạm tính ({totalItems} món)</span>
-                <span>{new Intl.NumberFormat('vi-VN').format(totalPrice)}đ</span>
-             </div>
-             <div className="flex justify-between text-neutral-600 text-sm">
-                <span>Phí vận chuyển</span>
-                <span>Đang tính...</span>
-             </div>
+            <div className="flex justify-between text-neutral-600 text-sm">
+              <span>Tạm tính ({totalItems} món)</span>
+              <span>{new Intl.NumberFormat('vi-VN').format(totalPrice)}đ</span>
+            </div>
+            <div className="flex justify-between text-neutral-600 text-sm">
+              <span>Phí vận chuyển</span>
+              <span>Đang tính...</span>
+            </div>
           </div>
           <div className="flex justify-between items-end pt-4 border-t border-neutral-100 mb-6">
-             <span className="font-medium text-neutral-900">Tổng cộng</span>
-             <span className="text-2xl font-bold text-red-600">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}</span>
+            <span className="font-medium text-neutral-900">Tổng cộng</span>
+            <span className="text-2xl font-bold text-red-600">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}</span>
           </div>
 
           {!orderUrl && (
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               form="checkout-form"
               disabled={isSubmitting}
               className="w-full flex items-center justify-center gap-2 py-4 bg-neutral-900 text-white font-medium rounded-xl hover:bg-neutral-800 transition-colors shadow-md disabled:bg-neutral-300 disabled:cursor-not-allowed"

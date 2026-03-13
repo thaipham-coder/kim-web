@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://kim-2026.vercel.app/'),
   title: "Kim Coffee & Fruit Tea",
   description: "Thơm vị cà phê - mát lành trái cây",
   other: {

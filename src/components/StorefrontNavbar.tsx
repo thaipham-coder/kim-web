@@ -3,11 +3,9 @@
 import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "./CartProvider";
-import { Logout } from "@/components/logout";
 import { StorefrontSearch } from "./StorefrontSearch";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { NavUser } from "./nav-user";
-import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 
 interface Product {

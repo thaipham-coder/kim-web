@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { updateOrderStatus, deleteOrder } from "./actions";
 import { Check, Clock, X, Truck, ChefHat, Trash2 } from "lucide-react";
 import Link from "next/link";

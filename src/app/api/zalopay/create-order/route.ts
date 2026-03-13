@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { createZaloPayOrder } from "@/lib/zalopay";
 import { OrderStatus, PaymentMethod } from "@/generated/prisma";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { verifySession } from "@/lib/dal";
 
 export async function POST(request: Request) {
   try {
@@ -37,7 +36,7 @@ export async function POST(request: Request) {
     ).toString().padStart(3, "0")}`;
 
     // 0. Lấy session để gắn userId (cho phép đặt hàng khi chưa đăng nhập)
-    const session = await auth.api.getSession({ headers: await headers() });
+    const session = await verifySession()
 
     // 1. Tạo đơn hàng PENDING trong database
     const order = await prisma.order.create({

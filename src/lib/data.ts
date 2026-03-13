@@ -1,95 +1,96 @@
-import 'server-only'
 
-import { prisma } from "./db";
+import prisma from "./db";
 import { unstable_cache } from "next/cache";
-import { cache } from "react";
 
 /**
- * Lấy danh sách Categories kèm theo Products đã cache.
- * Sử dụng Request Memoization (React.cache) và Data Cache (unstable_cache).
+ * ⚠️ Dùng unstable_cache thay vì "use cache" vì PrismaNeon adapter
+ * không tương thích với Cache environment của Next.js 16.
+ * (PrismaNeon dùng HTTP/fetch nội bộ, bị lỗi ErrorEvent trong Cache worker)
+ *
+ * Khi Prisma hỗ trợ chính thức Cache env, có thể chuyển sang "use cache".
  */
-export const getCategoriesWithProducts = cache(async () => {
-    return await unstable_cache(
-        async () => {
-            return await prisma.category.findMany({
-                orderBy: { sortOrder: "asc" },
-                include: {
-                    products: {
-                        where: { isAvailable: true },
-                        include: {
-                            modifiers: {
-                                include: { items: true },
-                            },
-                        },
+
+/**
+ * Lấy danh sách Categories kèm Products.
+ */
+export const getCategoriesWithProducts = unstable_cache(
+    async () => {
+        return await prisma.category.findMany({
+            orderBy: { sortOrder: "asc" },
+            include: {
+                products: {
+                    where: { isAvailable: true },
+                    include: {
+                        modifiers: { include: { items: true } },
                     },
                 },
-            });
-        },
-        ["categories-with-products"],
-        {
-            tags: ["categories", "products"],
-        }
-    )();
-});
+            },
+        });
+    },
+    ["categories-with-products"],
+    { tags: ["categories", "products"], revalidate: 3600 }
+);
 
 /**
- * Lấy chi tiết sản phẩm theo Slug đã cache.
+ * Lấy chi tiết sản phẩm theo Slug.
  */
-export const getProductBySlug = cache(async (slug: string) => {
-    return await unstable_cache(
+export const getProductBySlug = (slug: string) =>
+    unstable_cache(
         async () => {
             return await prisma.product.findUnique({
                 where: { slug },
                 include: {
-                    modifiers: {
-                        include: {
-                            items: true,
-                        },
-                    },
+                    modifiers: { include: { items: true } },
                     category: true,
                 },
             });
         },
         [`product-${slug}`],
-        {
-            tags: ["products", `product-${slug}`],
-        }
+        { tags: ["products", `product-${slug}`], revalidate: 3600 }
     )();
-});
 
 /**
- * Lấy toàn bộ sản phẩm (không lọc category) cho công cụ tìm kiếm.
+ * Lấy toàn bộ sản phẩm cho thanh tìm kiếm.
  */
-export const getProducts = cache(async () => {
-    return await unstable_cache(
+export const getProducts = unstable_cache(
+    async () => {
+        return await prisma.product.findMany({
+            where: { isAvailable: true },
+            select: {
+                id: true,
+                name: true,
+                slug: true,
+                price: true,
+                image: true,
+                category: { select: { name: true } },
+            },
+        });
+    },
+    ["all-available-products"],
+    { tags: ["products"], revalidate: 3600 }
+);
+
+/**
+ * Lịch sử đơn hàng — không cache lâu vì dữ liệu thay đổi thường xuyên.
+ * Dùng revalidate ngắn (60s) thay vì cache vô hạn.
+ */
+export const getOrdersByUserId = (userId: string) =>
+    unstable_cache(
         async () => {
-            return await prisma.product.findMany({
-                where: { isAvailable: true },
+            if (!userId) return [];
+            return await prisma.order.findMany({
+                where: { userId },
+                orderBy: { createdAt: "desc" },
                 include: {
-                    category: true,
+                    orderItems: {
+                        include: {
+                            product: true,
+                            modifiers: true,
+                        },
+                    },
                 },
             });
         },
-        ["all-available-products"],
-        {
-            tags: ["products"],
-        }
+        [`user-orders-${userId}`],
+        { tags: [`user-orders-${userId}`], revalidate: 60 }
     )();
-});
-/**
- * Lấy lịch sử đơn hàng của người dùng.
- */
-export const getOrdersByUserId = cache(async (userId: string) => {
-    return await prisma.order.findMany({
-        where: { userId },
-        orderBy: { createdAt: "desc" },
-        include: {
-            orderItems: {
-                include: {
-                    product: true,
-                    modifiers: true,
-                },
-            },
-        },
-    });
-});

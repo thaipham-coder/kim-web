@@ -1,14 +1,11 @@
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 import ProfileForm from "./_components/ProfileForm";
+import { getUser } from "@/lib/dal";
+import { redirect } from "next/navigation";
 
 export default async function ProfilePage() {
-  const session = await auth.api.getSession({ headers: await headers() });
+  const user = await getUser()
 
-  if (!session) {
-    redirect("/login");
-  }
+  if (!user) redirect("/login")
 
   return (
     <div className="space-y-6">
@@ -17,7 +14,7 @@ export default async function ProfilePage() {
         <p className="text-sm text-neutral-500">Quản lý thông tin hồ sơ và địa chỉ mặc định của bạn.</p>
       </div>
 
-      <ProfileForm user={session.user} />
+      <ProfileForm user={user} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import Link from "next/link";
 import { ArrowLeft, Plus } from "lucide-react";
 import { createCategory } from "./actions";

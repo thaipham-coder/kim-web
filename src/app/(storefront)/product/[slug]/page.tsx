@@ -7,15 +7,15 @@ import StorefrontNavbar from "@/components/StorefrontNavbar";
 import { CartProvider } from "@/components/CartProvider";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 import { getProductBySlug, getProducts } from "@/lib/data";
 
 export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session?.user) redirect("/login");
+  const [session, products] = await Promise.all([
+    auth.api.getSession({ headers: await headers() }),
+    getProducts(),
+  ]);
 
   const { slug } = await params;
-  const products = await getProducts();
 
   const product = await getProductBySlug(slug);
 
@@ -24,7 +24,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
   return (
     <CartProvider>
       <div className="min-h-screen bg-neutral-50 flex flex-col">
-        <StorefrontNavbar user={session.user} products={products} />
+        <StorefrontNavbar user={session?.user} products={products} />
 
         <main className="flex-1 max-w-5xl mx-auto w-full p-4 lg:p-6 pb-32">
           <Link href="/" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 mb-6 font-medium transition-colors">

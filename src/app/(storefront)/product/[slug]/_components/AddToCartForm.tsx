@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/components/CartProvider";
+import { useSession } from "@/lib/auth-client";
 import { Plus, Minus, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,7 @@ interface AddToCartFormProps {
 export default function AddToCartForm({ product }: AddToCartFormProps) {
   const router = useRouter();
   const { addToCart } = useCart();
+  const { data: session } = useSession();
 
   const [quantity, setQuantity] = useState(1);
   const [note, setNote] = useState("");
@@ -68,6 +70,12 @@ export default function AddToCartForm({ product }: AddToCartFormProps) {
   };
 
   const handleAddToCart = () => {
+    // Kiểm tra đăng nhập trước khi thêm vào giỏ
+    if (!session?.user) {
+      router.push("/login");
+      return;
+    }
+
     for (const group of product.modifiers) {
       const selected = selections[group.id] || [];
       if (group.isRequired && selected.length < group.minSelection) {

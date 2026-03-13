@@ -1,14 +1,13 @@
 "use server";
 
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/db";
-import { headers } from "next/headers";
+import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { verifySession } from "@/lib/dal";
 
 export async function updateProfile(formData: FormData) {
-  const session = await auth.api.getSession({ headers: await headers() });
+  const session = await verifySession()
 
-  if (!session) {
+  if (!session?.user) {
     return { error: "Bạn cần đăng nhập để thực hiện hành động này" };
   }
 

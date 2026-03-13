@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { verifyCallback } from "@/lib/zalopay";
 
 export async function POST(request: Request) {

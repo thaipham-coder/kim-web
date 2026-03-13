@@ -1,17 +1,14 @@
-import { auth } from "@/lib/auth";
 import { getOrdersByUserId } from "@/lib/data";
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
 import { Badge } from "@/components/ui/badge";
+import { verifySession } from "@/lib/dal";
 
 export default async function OrdersPage() {
-  const session = await auth.api.getSession({ headers: await headers() });
+  const session = await verifySession()
 
-  if (!session) {
-    redirect("/login");
-  }
+  if (!session?.user) redirect("/login");
 
   const orders = await getOrdersByUserId(session.user.id);
 
@@ -55,9 +52,9 @@ export default async function OrdersPage() {
               </div>
 
               <div className="mt-4 pt-4 border-t border-neutral-50">
-                   <p className="text-sm text-neutral-600 line-clamp-1">
-                      {order.orderItems.map(item => `${item.quantity}x ${item.product.name}`).join(", ")}
-                   </p>
+                <p className="text-sm text-neutral-600 line-clamp-1">
+                  {order.orderItems.map(item => `${item.quantity}x ${item.product.name}`).join(", ")}
+                </p>
               </div>
             </div>
           ))}

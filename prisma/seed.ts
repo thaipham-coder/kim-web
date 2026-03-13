@@ -1,5 +1,5 @@
 // prisma/seed.ts
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/db';
 import categories from './categories.json';
 import products from './products.json';
 import { toSlug } from '@/lib/utils';
