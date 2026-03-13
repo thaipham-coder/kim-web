@@ -1,0 +1,920 @@
+[
+  {
+    "id": 1,
+    "categoryId": 1,
+    "name": "Trà Đào Cam Sả",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 2,
+    "categoryId": 1,
+    "name": "Trà Măng Cầu",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 3,
+    "categoryId": 1,
+    "name": "Trà Nhãn",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 4,
+    "categoryId": 1,
+    "name": "Trà Vải",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 5,
+    "categoryId": 1,
+    "name": "Trà Dâu",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 6,
+    "categoryId": 1,
+    "name": "Trà Dưa Lưới",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 7,
+    "categoryId": 1,
+    "name": "Trà Măng Cụt",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 8,
+    "categoryId": 1,
+    "name": "Trà Nho",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 9,
+    "categoryId": 1,
+    "name": "Trà Việt Quất",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 10,
+    "categoryId": 1,
+    "name": "Trà Lài Mật Ong",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 11,
+    "categoryId": 1,
+    "name": "Trà Hạt Tạo Hiệu",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 12,
+    "categoryId": 1,
+    "name": "Trà Hoa Anh Đào",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 13,
+    "categoryId": 2,
+    "name": "Nước ép Cam",
+    "price": 22000,
+    "originalPrice": 22000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 14,
+    "categoryId": 2,
+    "name": "Nước ép Táo",
+    "price": 24000,
+    "originalPrice": 24000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 15,
+    "categoryId": 2,
+    "name": "Nước ép Cà rốt",
+    "price": 22000,
+    "originalPrice": 22000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 16,
+    "categoryId": 2,
+    "name": "Nước ép Khóm Táo",
+    "price": 24000,
+    "originalPrice": 24000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 17,
+    "categoryId": 2,
+    "name": "Nước ép Dưa hấu",
+    "price": 24000,
+    "originalPrice": 24000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 18,
+    "categoryId": 2,
+    "name": "Nước ép Mix Đông Gia",
+    "price": 24000,
+    "originalPrice": 24000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 19,
+    "categoryId": 3,
+    "name": "Sinh tố Đỏ",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 20,
+    "categoryId": 3,
+    "name": "Sinh tố Dưa gang",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 21,
+    "categoryId": 3,
+    "name": "Sinh tố Gapoche",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 22,
+    "categoryId": 3,
+    "name": "Sinh tố Sầu riêng",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 23,
+    "categoryId": 3,
+    "name": "Sinh tố Mãng cầu",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 24,
+    "categoryId": 4,
+    "name": "Yaourt Đá",
+    "price": 23000,
+    "originalPrice": 23000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 25,
+    "categoryId": 4,
+    "name": "Yaourt Dâu",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 26,
+    "categoryId": 4,
+    "name": "Yaourt Đào",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 27,
+    "categoryId": 4,
+    "name": "Yaourt Hoa Hồng",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 28,
+    "categoryId": 4,
+    "name": "Yaourt Việt Quất",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 29,
+    "categoryId": 4,
+    "name": "Yaourt Nho",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 30,
+    "categoryId": 5,
+    "name": "Trái cây tươi",
+    "price": 5000,
+    "originalPrice": 5000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 31,
+    "categoryId": 5,
+    "name": "Trân châu",
+    "price": 5000,
+    "originalPrice": 5000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 32,
+    "categoryId": 5,
+    "name": "Thạch Nô Cù Năng",
+    "price": 5000,
+    "originalPrice": 5000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 33,
+    "categoryId": 5,
+    "name": "Thạch dừa",
+    "price": 5000,
+    "originalPrice": 5000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 34,
+    "categoryId": 5,
+    "name": "Sương sáo",
+    "price": 5000,
+    "originalPrice": 5000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 35,
+    "categoryId": 5,
+    "name": "Thạch trái cây",
+    "price": 5000,
+    "originalPrice": 5000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 36,
+    "categoryId": 5,
+    "name": "Thạch sợi 3Q",
+    "price": 7000,
+    "originalPrice": 7000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 37,
+    "categoryId": 5,
+    "name": "Pudding trứng",
+    "price": 7000,
+    "originalPrice": 7000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 38,
+    "categoryId": 5,
+    "name": "Khoai môn",
+    "price": 7000,
+    "originalPrice": 7000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 39,
+    "categoryId": 5,
+    "name": "Sô-cô-la",
+    "price": 7000,
+    "originalPrice": 7000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 40,
+    "categoryId": 5,
+    "name": "Kem trứng muối",
+    "price": 7000,
+    "originalPrice": 7000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 41,
+    "categoryId": 5,
+    "name": "Kem Cheese",
+    "price": 5000,
+    "originalPrice": 5000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 42,
+    "categoryId": 5,
+    "name": "Bánh Flan",
+    "price": 8000,
+    "originalPrice": 8000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 43,
+    "categoryId": 5,
+    "name": "Bánh Flan (2 cái)",
+    "price": 15000,
+    "originalPrice": 15000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 44,
+    "categoryId": 5,
+    "name": "Panacosta",
+    "price": 18000,
+    "originalPrice": 18000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 45,
+    "categoryId": 5,
+    "name": "Panacosta thêm thạch trái cây",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 46,
+    "categoryId": 5,
+    "name": "Tàu Hủ Singapore",
+    "price": 18000,
+    "originalPrice": 18000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 47,
+    "categoryId": 5,
+    "name": "Tàu Hủ Singapore thêm thạch topping",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 48,
+    "categoryId": 5,
+    "name": "Kem muối",
+    "price": 5000,
+    "originalPrice": 5000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 49,
+    "categoryId": 5,
+    "name": "Kem trứng",
+    "price": 5000,
+    "originalPrice": 5000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 50,
+    "categoryId": 6,
+    "name": "Bánh tráng cuộn",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 51,
+    "categoryId": 6,
+    "name": "Bánh tráng trộn",
+    "price": 20000,
+    "originalPrice": 20000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 52,
+    "categoryId": 6,
+    "name": "Xiên que thập cẩm",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 53,
+    "categoryId": 6,
+    "name": "Bánh tráng đặc biệt",
+    "price": 50000,
+    "originalPrice": 50000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 54,
+    "categoryId": 6,
+    "name": "Khoai tây lắc",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 55,
+    "categoryId": 6,
+    "name": "Khoai tây chiên",
+    "price": 20000,
+    "originalPrice": 20000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 56,
+    "categoryId": 6,
+    "name": "Mì cày",
+    "price": 35000,
+    "originalPrice": 35000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 57,
+    "categoryId": 6,
+    "name": "Mì xào",
+    "price": 35000,
+    "originalPrice": 35000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 58,
+    "categoryId": 6,
+    "name": "Bánh mì kẹp",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 59,
+    "categoryId": 6,
+    "name": "Bánh mì xíu mại",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 60,
+    "categoryId": 6,
+    "name": "Bò kho + Bánh mì",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 61,
+    "categoryId": 7,
+    "name": "Cà phê đá",
+    "price": 20000,
+    "originalPrice": 20000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 62,
+    "categoryId": 7,
+    "name": "Cà phê nóng",
+    "price": 20000,
+    "originalPrice": 20000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 63,
+    "categoryId": 7,
+    "name": "Cà phê sữa",
+    "price": 22000,
+    "originalPrice": 22000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 64,
+    "categoryId": 7,
+    "name": "Bạc xỉu",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 65,
+    "categoryId": 7,
+    "name": "Cà phê sữa dừa",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 66,
+    "categoryId": 7,
+    "name": "Latte",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 67,
+    "categoryId": 7,
+    "name": "Cappuccino",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 68,
+    "categoryId": 7,
+    "name": "Mocha",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 69,
+    "categoryId": 7,
+    "name": "Cà phê muối",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 70,
+    "categoryId": 7,
+    "name": "Hot Caffe Caramel Muối Hồng",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 71,
+    "categoryId": 8,
+    "name": "Cacao đá",
+    "price": 25000,
+    "originalPrice": 25000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 72,
+    "categoryId": 8,
+    "name": "Cacao sữa gấu",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 73,
+    "categoryId": 8,
+    "name": "Cacao khoai môn",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 74,
+    "categoryId": 9,
+    "name": "Latte Vanilla Trân châu",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 75,
+    "categoryId": 9,
+    "name": "Caramel Latte",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 76,
+    "categoryId": 9,
+    "name": "Latte Kem Cheese",
+    "price": 33000,
+    "originalPrice": 33000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 77,
+    "categoryId": 10,
+    "name": "Đá bào dầu tăm",
+    "price": 22000,
+    "originalPrice": 22000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 78,
+    "categoryId": 10,
+    "name": "Đá bào thơm hạt đác",
+    "price": 22000,
+    "originalPrice": 22000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 79,
+    "categoryId": 10,
+    "name": "Đá bào dưa lưới",
+    "price": 22000,
+    "originalPrice": 22000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 80,
+    "categoryId": 10,
+    "name": "Đá bào hoa hồng",
+    "price": 22000,
+    "originalPrice": 22000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 81,
+    "categoryId": 10,
+    "name": "Máy hồng kem muối hạt đác tăm",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 82,
+    "categoryId": 10,
+    "name": "Máy xanh kem muối hạt đác",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 83,
+    "categoryId": 11,
+    "name": "Oreo đá xay",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 84,
+    "categoryId": 11,
+    "name": "Matcha đá xay",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 85,
+    "categoryId": 11,
+    "name": "Cacao đá xay",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 86,
+    "categoryId": 11,
+    "name": "Cà phê đá xay",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 87,
+    "categoryId": 11,
+    "name": "Calamen cà phê đá xay",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 88,
+    "categoryId": 12,
+    "name": "Matcha sữa gấu",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 89,
+    "categoryId": 12,
+    "name": "Cà phê sữa gấu",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 90,
+    "categoryId": 12,
+    "name": "Cacao sữa gấu",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 91,
+    "categoryId": 13,
+    "name": "Trà sữa truyền thống",
+    "price": 28000,
+    "originalPrice": 28000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 92,
+    "categoryId": 13,
+    "name": "Trà sữa Olong",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 93,
+    "categoryId": 13,
+    "name": "Trà sữa Matcha",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 94,
+    "categoryId": 13,
+    "name": "Trà sữa Lài",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 95,
+    "categoryId": 13,
+    "name": "Trà gạo rang",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 96,
+    "categoryId": 13,
+    "name": "Trà sữa khoai môn",
+    "price": 30000,
+    "originalPrice": 30000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 97,
+    "categoryId": 14,
+    "name": "Yến mạch cà phê",
+    "price": 33000,
+    "originalPrice": 33000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 98,
+    "categoryId": 14,
+    "name": "Yến mạch caramel",
+    "price": 33000,
+    "originalPrice": 33000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 99,
+    "categoryId": 14,
+    "name": "Yến mạch hoa hồng",
+    "price": 33000,
+    "originalPrice": 33000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 100,
+    "categoryId": 14,
+    "name": "Yến mạch matcha",
+    "price": 33000,
+    "originalPrice": 33000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 101,
+    "categoryId": 14,
+    "name": "Matcha Sô-cô-la Sữa Dừa Kem Cheese",
+    "price": 32000,
+    "originalPrice": 32000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  },
+  {
+    "id": 102,
+    "categoryId": 14,
+    "name": "Hot Matcha Soda Dậu",
+    "price": 33000,
+    "originalPrice": 33000,
+    "image": "https://zalo-miniapp.github.io/zaui-market/dummy/product/apples.png",
+    "detail": ""
+  }
+]

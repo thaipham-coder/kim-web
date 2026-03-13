@@ -1,0 +1,222 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PREPARING
+  DELIVERING
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  COD
+  BANK_TRANSFER
+  ZALOPAY
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  emailVerified Boolean   @default(false)
+  image          String?
+  updatedAt      DateTime  @updatedAt
+  phone          String?
+  defaultAddress String?
+  latitude       Float?
+  longitude      Float?
+  sessions       Session[]
+  accounts       Account[]
+  orders         Order[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+// ======================================
+// F&B STOREFRONT MODELS
+// ======================================
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  slug      String   @unique
+  image     String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products Product[]
+
+  @@map("category")
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String?
+  price       Int // Price in VND
+  image       String?
+  isAvailable Boolean  @default(true)
+  categoryId  Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  category   Category        @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  modifiers  ModifierGroup[]
+  orderItems OrderItem[]
+
+  @@map("product")
+}
+
+model ModifierGroup {
+  id           Int      @id @default(autoincrement())
+  name         String // e.g., "Size", "Topping", "Ice Level"
+  isRequired   Boolean  @default(false)
+  minSelection Int      @default(0)
+  maxSelection Int      @default(1)
+  productId    Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  product Product        @relation(fields: [productId], references: [id], onDelete: Cascade)
+  items   ModifierItem[]
+
+  @@map("modifier_group")
+}
+
+model ModifierItem {
+  id        Int      @id @default(autoincrement())
+  name      String // e.g., "Medium", "Large", "Boba"
+  price     Int      @default(0) // Additional price in VND
+  groupId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  group         ModifierGroup       @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  orderItemMods OrderItemModifier[]
+
+  @@map("modifier_item")
+}
+
+model Order {
+  id              Int           @id @default(autoincrement())
+  orderNumber     String        @unique // e.g., "ORD-12345"
+  userId          String?
+  totalAmount     Int // Total in VND
+  status          OrderStatus   @default(PENDING)
+  paymentMethod   PaymentMethod @default(COD)
+  isPaid          Boolean       @default(false)
+  zpTransId       String?       // Mã giao dịch ZaloPay (zp_trans_id)
+  appTransId      String?       @unique // Mã giao dịch Merchant (app_trans_id)
+  // Delivery Info (snapshot at the time of order)
+  customerName    String
+  customerPhone   String
+  customerAddress String?
+  customerNote    String?
+  customerLatitude  Float?
+  customerLongitude Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user       User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  orderItems OrderItem[]
+
+  @@map("order")
+}
+
+model OrderItem {
+  id          Int     @id @default(autoincrement())
+  orderId     Int
+  productId   Int
+  quantity    Int     @default(1)
+  priceAtTime Int // Product base price when ordered
+  note        String?
+
+  order     Order               @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product             @relation(fields: [productId], references: [id], onDelete: Restrict)
+  modifiers OrderItemModifier[]
+
+  @@map("order_item")
+}
+
+model OrderItemModifier {
+  id             Int    @id @default(autoincrement())
+  orderItemId    Int
+  modifierItemId Int? // Nullable in case the original modifier gets deleted
+  modifierName   String // Snapshot of modifier name
+  modifierPrice  Int // Snapshot of modifier price
+
+  orderItem    OrderItem     @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+  modifierItem ModifierItem? @relation(fields: [modifierItemId], references: [id], onDelete: SetNull)
+
+  @@map("order_item_modifier")
+}
