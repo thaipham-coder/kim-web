@@ -2,8 +2,10 @@
 
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { verifyAdmin } from "@/lib/dal";
 
 export async function createCategory(formData: FormData) {
+  await verifyAdmin();
   const name = formData.get("name") as string;
   const slug = formData.get("slug") as string;
   const sortOrder = parseInt((formData.get("sortOrder") as string) || "0");
@@ -28,6 +30,7 @@ export async function createCategory(formData: FormData) {
 }
 
 export async function deleteCategory(id: number) {
+  await verifyAdmin();
   try {
     await prisma.category.delete({
       where: { id },

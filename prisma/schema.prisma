@@ -41,12 +41,11 @@ model User {
   image          String?
   updatedAt      DateTime  @updatedAt
   phone          String?
-  defaultAddress String?
-  latitude       Float?
-  longitude      Float?
   sessions       Session[]
   accounts       Account[]
   orders         Order[]
+  addresses      Address[]
+  pushSubscriptions PushSubscription[]
 
   @@map("user")
 }
@@ -97,6 +96,23 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  userId    String
+  label     String   // VD: "Nhà", "Công ty"
+  address   String
+  latitude  Float?
+  longitude Float?
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("address")
 }
 
 // ======================================
@@ -179,6 +195,7 @@ model Order {
   // Delivery Info (snapshot at the time of order)
   customerName    String
   customerPhone   String
+  customerEmail   String?
   customerAddress String?
   customerNote    String?
   customerLatitude  Float?
@@ -219,4 +236,18 @@ model OrderItemModifier {
   modifierItem ModifierItem? @relation(fields: [modifierItemId], references: [id], onDelete: SetNull)
 
   @@map("order_item_modifier")
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  userId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("push_subscription")
 }

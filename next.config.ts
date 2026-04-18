@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 import createMDX from '@next/mdx'
+import withSerwist from "@serwist/next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  experimental: {
+    mdxRs: true,
+  },
   reactCompiler: true,
   images: {
     unoptimized: true,
@@ -26,5 +31,12 @@ const withMDX = createMDX({
   extension: /\.(md|mdx)$/,
 })
 
-// Merge MDX config with Next.js config
-export default withMDX(nextConfig)
+const withPWA = withSerwist({
+  swSrc: "src/app/sw.ts",
+  swDest: "public/sw.js",
+  disable: process.env.NODE_ENV === "development",
+});
+
+// Merge MDX config with Next.js config, then wrap with Serwist
+export default withPWA(withMDX(nextConfig))
+

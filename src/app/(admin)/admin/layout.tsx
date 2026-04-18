@@ -1,6 +1,4 @@
-import { redirect } from "next/navigation";
-import { headers } from "next/headers";
-import { auth } from "@/lib/auth";
+import { verifyAdmin } from "@/lib/dal";
 import {
   SidebarProvider,
   SidebarInset,
@@ -8,20 +6,16 @@ import {
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
+import { PushNotificationToggle } from "@/components/PushNotificationToggle";
+import { OrderAnnouncer } from "@/components/OrderAnnouncer";
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Protect the admin route
-  const session = await auth.api.getSession({
-    headers: await headers()
-  });
-
-  if (!session?.user) {
-    redirect("/login");
-  }
+  // Protect the admin route with Role-based checking
+  const session = await verifyAdmin();
 
   return (
     <SidebarProvider
@@ -42,6 +36,9 @@ export default async function AdminLayout({
               className="mx-2 data-[orientation=vertical]:h-4"
             />
             <h1 className="text-base font-medium">Admin Dashboard</h1>
+            <div className="ml-auto">
+              <PushNotificationToggle />
+            </div>
           </div>
         </header>
         <main className="flex-1 overflow-auto bg-neutral-50/50">
@@ -50,6 +47,7 @@ export default async function AdminLayout({
           </div>
         </main>
       </SidebarInset>
+      <OrderAnnouncer />
     </SidebarProvider>
   );
 }

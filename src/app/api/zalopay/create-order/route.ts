@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/db";
 import { createZaloPayOrder } from "@/lib/zalopay";
 import { OrderStatus, PaymentMethod } from "@/generated/prisma";
-import { verifySession } from "@/lib/dal";
+import { getOptionalSession } from "@/lib/dal";
 
 export async function POST(request: Request) {
   try {
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const address = isTakeaway ? "Nhận tại quán" : customerAddress;
+    const address = isTakeaway ? customerAddress : "Nhận tại quán";
     const totalAmount = cartItems.reduce(
       (sum: number, item: any) => sum + item.itemTotal,
       0
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     ).toString().padStart(3, "0")}`;
 
     // 0. Lấy session để gắn userId (cho phép đặt hàng khi chưa đăng nhập)
-    const session = await verifySession()
+    const session = await getOptionalSession()
 
     // 1. Tạo đơn hàng PENDING trong database
     const order = await prisma.order.create({
@@ -102,13 +102,13 @@ export async function POST(request: Request) {
       data: { appTransId: zpResult.app_trans_id },
     });
 
-    // 5. Trả về order_url để frontend render QR Code
+    // 5. Trả về qr_code để frontend render QR Code (fallback to order_url nếu qr_code rỗng)
     return NextResponse.json({
       success: true,
       orderId: order.id,
       orderNumber,
       appTransId: zpResult.app_trans_id,
-      orderUrl: zpResult.order_url,
+      qrCode: zpResult.qr_code || zpResult.order_url,
     });
   } catch (error) {
     console.error("Create ZaloPay Order Error:", error);

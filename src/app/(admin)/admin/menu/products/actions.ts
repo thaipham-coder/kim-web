@@ -2,8 +2,10 @@
 
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { verifyAdmin } from "@/lib/dal";
 
 export async function deleteProduct(id: number) {
+  await verifyAdmin();
   try {
     await prisma.product.delete({
       where: { id },
@@ -17,6 +19,7 @@ export async function deleteProduct(id: number) {
 }
 
 export async function toggleProductAvailability(id: number, currentStatus: boolean) {
+  await verifyAdmin();
   try {
     await prisma.product.update({
       where: { id },
@@ -31,6 +34,7 @@ export async function toggleProductAvailability(id: number, currentStatus: boole
 }
 
 export async function saveProduct(formData: FormData) {
+  await verifyAdmin();
   try {
     const id = formData.get("id") ? parseInt(formData.get("id") as string) : undefined;
     const name = formData.get("name") as string;

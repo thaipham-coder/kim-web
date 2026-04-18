@@ -1,4 +1,3 @@
-import { CartProvider } from "@/components/CartProvider";
 import { CategoryList } from "@/components/CategoryList";
 import { NavbarContainer } from "@/components/NavbarContainer";
 import Footer from "@/components/Footer";
@@ -7,21 +6,20 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function StorefrontPage() {
   return (
-    <CartProvider>
-      <div className="min-h-screen bg-neutral-50 flex flex-col">
-        <Suspense fallback={<NavbarSkeleton />}>
-          <NavbarContainer />
-        </Suspense>
+    <div className="min-h-screen bg-neutral-50 flex flex-col">
+      <Suspense fallback={<NavbarSkeleton />}>
+        <NavbarContainer />
+      </Suspense>
 
-        <main className="flex-grow w-full max-w-5xl mx-auto px-4 lg:px-6 py-8">
-          <Suspense fallback={<CategoryListSkeleton />}>
-            <CategoryList />
-          </Suspense>
-        </main>
-        
-        <Footer />
-      </div>
-    </CartProvider>
+      <main className="flex-grow w-full max-w-5xl mx-auto px-4 lg:px-6">
+        <Suspense fallback={<CategoryListSkeleton />}>
+          <CategoryList />
+        </Suspense>
+      </main>
+
+      <Footer />
+    </div>
+
   );
 }
 

@@ -2,14 +2,17 @@
 
 import prisma from "@/lib/db";
 import { OrderStatus, PaymentMethod } from "@/generated/prisma";
-import { verifySession } from "@/lib/dal";
+import { getOptionalSession } from "@/lib/dal";
+import { sendOrderEmails } from "@/lib/email";
+import { sendPushToAdmins, formatVNDForPush } from "@/lib/push";
 
 export async function createOrder(formData: FormData) {
   try {
     const customerName = formData.get("customerName") as string;
     const customerPhone = formData.get("customerPhone") as string;
+    const customerEmail = (formData.get("customerEmail") as string) || null;
     const isTakeaway = formData.get("isTakeaway") === "true";
-    const customerAddress = isTakeaway ? "Nhận tại quán" : (formData.get("customerAddress") as string);
+    const customerAddress = isTakeaway ? (formData.get("customerAddress") as string) : "Nhận tại quán";
     const customerNote = formData.get("customerNote") as string;
     const paymentMethod = formData.get("paymentMethod") as PaymentMethod;
 
@@ -27,7 +30,7 @@ export async function createOrder(formData: FormData) {
     const orderNumber = `ORD-${new Date().getTime().toString().slice(-4)}${(count + 1).toString().padStart(3, '0')}`;
 
     // Lấy session để gắn userId (cho phép đặt hàng khi chưa đăng nhập)
-    const session = await verifySession()
+    const session = await getOptionalSession()
 
     const order = await prisma.order.create({
       data: {
@@ -35,6 +38,7 @@ export async function createOrder(formData: FormData) {
         userId: session?.user?.id || null,
         customerName,
         customerPhone,
+        customerEmail,
         customerAddress,
         customerNote,
         totalAmount,
@@ -58,6 +62,30 @@ export async function createOrder(formData: FormData) {
       }
     });
 
+    // Gửi email thông báo (fire-and-forget, không block response)
+    const fullOrder = await prisma.order.findUnique({
+      where: { id: order.id },
+      include: {
+        user: { select: { email: true } },
+        orderItems: {
+          include: {
+            product: true,
+            modifiers: true,
+          },
+        },
+      },
+    });
+    if (fullOrder) {
+      sendOrderEmails(fullOrder);
+
+      // Push notification cho admin (fire-and-forget)
+      sendPushToAdmins({
+        title: `🔔 Đơn hàng mới #${order.orderNumber}`,
+        body: `${customerName} — ${formatVNDForPush(totalAmount)}`,
+        url: "/admin/orders",
+      });
+    }
+
     return { success: true, orderId: order.id, orderNumber: order.orderNumber };
 
   } catch (error) {
@@ -65,3 +93,4 @@ export async function createOrder(formData: FormData) {
     return { error: "Có lỗi khi tạo đơn hàng. Vui lòng thử lại!" };
   }
 }
+

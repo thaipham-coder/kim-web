@@ -7,5 +7,14 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <PolicyLayout>{children}</PolicyLayout>;
+  return (
+    <PolicyLayout
+      breadcrumb={[
+        { label: "Trang chủ", href: "/" },
+        { label: "Chính sách bảo mật" },
+      ]}
+    >
+      {children}
+    </PolicyLayout>
+  );
 }

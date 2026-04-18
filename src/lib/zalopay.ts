@@ -65,9 +65,9 @@ export async function createZaloPayOrder(
 
   const embedData = JSON.stringify({
     redirecturl: params.redirectUrl || "",
-    preferred_payment_method: [],
+    preferred_payment_method: ["vietqr"],
   });
-  
+
   const itemStr = JSON.stringify(params.items);
 
   const orderData: Record<string, any> = {
@@ -77,7 +77,7 @@ export async function createZaloPayOrder(
     app_time: appTime,
     amount: params.amount,
     description: params.description,
-    bank_code: "zalopayapp",
+    bank_code: "", // QR đa năng: hỗ trợ ZaloPay, Zalo, và ngân hàng NAPAS
     item: itemStr,
     embed_data: embedData,
     callback_url: params.callbackUrl,
@@ -92,7 +92,7 @@ export async function createZaloPayOrder(
     orderData.embed_data,
     orderData.item,
   ];
-  
+
   const macData = macDataArray.join("|");
   orderData.mac = hmacSHA256(config.key1, macData);
 

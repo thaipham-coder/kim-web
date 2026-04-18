@@ -1,0 +1,33 @@
+{
+  "name": "Kim Cafe Admin",
+  "short_name": "Kim Admin",
+  "description": "Quản lý đơn hàng Kim Cafe",
+  "start_url": "/admin?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#171717",
+  "lang": "vi",
+  "orientation": "portrait-primary",
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

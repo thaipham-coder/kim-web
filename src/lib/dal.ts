@@ -10,8 +10,36 @@ export const verifySession = cache(async () => {
         headers: await headers() // you need to pass the headers object.
     })
 
-    if (!session?.user.id) {
+    if (!session?.user?.id) {
         redirect('/login')
+    }
+
+    return session
+})
+
+// Lấy session mà không redirect - dùng cho guest checkout
+export const getOptionalSession = cache(async () => {
+    try {
+        const session = await auth.api.getSession({
+            headers: await headers()
+        })
+        return session
+    } catch {
+        return null
+    }
+})
+
+export const verifyAdmin = cache(async () => {
+    const session = await auth.api.getSession({
+        headers: await headers()
+    })
+
+    if (!session?.user?.id) {
+        redirect('/login')
+    }
+
+    if (session.user.role !== 'ADMIN') {
+        redirect('/')
     }
 
     return session

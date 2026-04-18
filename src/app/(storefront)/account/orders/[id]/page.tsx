@@ -3,7 +3,6 @@ import { notFound, redirect } from "next/navigation";
 import { Check, Clock, Truck, ChefHat } from "lucide-react";
 import Link from "next/link";
 import StorefrontNavbar from "@/components/StorefrontNavbar";
-import { CartProvider } from "@/components/CartProvider";
 import { verifySession } from "@/lib/dal";
 
 export const revalidate = 10; // Auto refresh 10s
@@ -36,7 +35,6 @@ export default async function OrderStatusPage({ params }: { params: { id: string
    const currentStepIndex = order.status === "CANCELLED" ? -1 : steps.findIndex(s => s.status === order.status);
 
    return (
-      <CartProvider>
          <div className="min-h-screen bg-neutral-50 pb-20">
             <StorefrontNavbar user={session.user} />
 
@@ -132,6 +130,6 @@ export default async function OrderStatusPage({ params }: { params: { id: string
                </div>
             </main>
          </div>
-      </CartProvider>
+
    );
 }

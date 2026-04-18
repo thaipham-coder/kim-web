@@ -1,12 +1,12 @@
 import { getProducts } from "@/lib/data";
 import StorefrontNavbar from "./StorefrontNavbar";
-import { getUser } from "@/lib/dal";
+import { getOptionalSession } from "@/lib/dal";
 
 export async function NavbarContainer() {
-  const [user, products] = await Promise.all([
-    getUser(),
+  const [session, products] = await Promise.all([
+    getOptionalSession(),
     getProducts(),
   ]);
 
-  return <StorefrontNavbar user={user!} products={products} />;
+  return <StorefrontNavbar user={session?.user} products={products} />;
 }

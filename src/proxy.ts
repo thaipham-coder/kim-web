@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 
 export default async function proxy(request: NextRequest) {
+    const publicRoutes = ["/", "/terms", "/privacy"];
+
     const session = await auth.api.getSession({
         headers: request.headers,
     });
@@ -19,12 +21,13 @@ export default async function proxy(request: NextRequest) {
     }
 
     // 2. Always Redirect Admin to /admin
-    // We exclude /login and /api routes to avoid redirect loops or breaking auth
+    // We exclude /login, /api, and public routes to avoid redirect loops or breaking auth/public pages
     if (
-        session?.user.role === "ADMIN" &&
+        session?.user?.role === "ADMIN" &&
         !pathname.startsWith("/admin") &&
         !pathname.startsWith("/login") &&
         !pathname.startsWith("/api") &&
+        !publicRoutes.includes(pathname) &&
         pathname !== "/favicon.ico"
     ) {
         return NextResponse.redirect(new URL("/admin", request.url));

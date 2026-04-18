@@ -1,7 +1,6 @@
 import prisma from "@/lib/db";
 import Link from "next/link";
-import { ArrowLeft, Plus, Trash2, Edit, CheckCircle2, XCircle } from "lucide-react";
-import { deleteProduct, toggleProductAvailability } from "./actions";
+import { ArrowLeft, Plus } from "lucide-react";
 
 import { columns, Products } from "./_components/columns"
 import { ProductTable } from "./_components/data-table"

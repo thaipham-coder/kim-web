@@ -13,9 +13,6 @@ export async function updateProfile(formData: FormData) {
 
   const name = formData.get("name") as string;
   const phone = formData.get("phone") as string;
-  const defaultAddress = formData.get("defaultAddress") as string;
-  const latitude = formData.get("latitude") ? parseFloat(formData.get("latitude") as string) : null;
-  const longitude = formData.get("longitude") ? parseFloat(formData.get("longitude") as string) : null;
 
   // Validation
   if (!name || name.trim().length === 0) {
@@ -26,19 +23,12 @@ export async function updateProfile(formData: FormData) {
     return { error: "Số điện thoại phải đúng 10 chữ số" };
   }
 
-  if (!defaultAddress || defaultAddress.trim().length === 0) {
-    return { error: "Vui lòng nhập địa chỉ nhận hàng mặc định" };
-  }
-
   try {
     await prisma.user.update({
       where: { id: session.user.id },
       data: {
         name,
         phone,
-        defaultAddress,
-        latitude,
-        longitude,
       },
     });
 

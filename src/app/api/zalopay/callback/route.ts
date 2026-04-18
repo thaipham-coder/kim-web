@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/db";
 import { verifyCallback } from "@/lib/zalopay";
+import { sendOrderEmails } from "@/lib/email";
+import { sendPushToAdmins, formatVNDForPush } from "@/lib/push";
 
 export async function POST(request: Request) {
   try {
@@ -32,6 +34,30 @@ export async function POST(request: Request) {
 
     if (updatedOrder.count === 0) {
       console.error(`Order not found for appTransId: ${data.app_trans_id}`);
+    } else {
+      // Gửi email thông báo sau khi thanh toán thành công
+      const order = await prisma.order.findFirst({
+        where: { appTransId: data.app_trans_id },
+        include: {
+          user: { select: { email: true } },
+          orderItems: {
+            include: {
+              product: true,
+              modifiers: true,
+            },
+          },
+        },
+      });
+      if (order) {
+        sendOrderEmails(order);
+
+        // Push notification cho admin
+        sendPushToAdmins({
+          title: `🔔 Thanh toán ZaloPay #${order.orderNumber}`,
+          body: `${order.customerName} — ${formatVNDForPush(order.totalAmount)}`,
+          url: "/admin/orders",
+        });
+      }
     }
 
     return NextResponse.json({
@@ -46,3 +72,4 @@ export async function POST(request: Request) {
     });
   }
 }
+

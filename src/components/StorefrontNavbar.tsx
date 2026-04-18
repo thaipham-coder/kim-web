@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
-import { useCart } from "./CartProvider";
+import { useCart } from "@/store/cartStore";
 import { StorefrontSearch } from "./StorefrontSearch";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { NavUser } from "./nav-user";
@@ -39,22 +39,6 @@ export default function StorefrontNavbar({
             </Avatar>
             <span className="font-bold text-xl text-neutral-900 tracking-tight">Kim Coffee & Fruit Tea</span>
           </Link>
-
-          <div className="flex items-center gap-2 md:hidden">
-            <Link href="/cart" className="relative p-2 rounded-full hover:bg-neutral-100 transition-colors">
-              <ShoppingBag className="w-6 h-6 text-neutral-800" />
-              {totalItems > 0 && (
-                <span className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
-            {user ? (
-              <NavUser user={user} />
-            ) : (
-              <Link href="/login" className="text-xs font-medium">Đăng nhập</Link>
-            )}
-          </div>
         </div>
 
         {/* Search - Mobile below, Desktop right of logo */}

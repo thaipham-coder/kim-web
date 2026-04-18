@@ -80,17 +80,6 @@ export function StorefrontSearch({ products }: StorefrontSearchProps) {
                 </kbd>
             </button>
 
-            {/* Mobile Search Input (Visible only on mobile) */}
-            <div className="md:hidden mt-3 mb-1">
-                <button
-                    onClick={() => setOpen(true)}
-                    className="flex items-center gap-3 w-full px-4 py-3 bg-neutral-100 border border-neutral-200 rounded-full text-neutral-500 text-sm"
-                >
-                    <Search className="w-5 h-5" />
-                    <span>Bạn muốn tìm món gì?</span>
-                </button>
-            </div>
-
             <CommandDialog open={open} onOpenChange={setOpen}>
                 <Command>
                     <CommandInput placeholder="Nhập tên món hoặc loại đồ uống..." />

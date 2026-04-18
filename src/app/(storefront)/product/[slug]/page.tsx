@@ -1,16 +1,22 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import AddToCartForm from "./_components/AddToCartForm";
 import StorefrontNavbar from "@/components/StorefrontNavbar";
-import { CartProvider } from "@/components/CartProvider";
 import { getProductBySlug, getProducts } from "@/lib/data";
-import { getUser } from "@/lib/dal";
+import { getOptionalSession } from "@/lib/dal";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
-  const [user, products] = await Promise.all([
-    getUser(),
+  const [session, products] = await Promise.all([
+    getOptionalSession(),
     getProducts(),
   ]);
 
@@ -21,14 +27,29 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
   if (!product || !product.isAvailable) return notFound();
 
   return (
-    <CartProvider>
       <div className="min-h-screen bg-neutral-50 flex flex-col">
-        <StorefrontNavbar user={user!} products={products} />
+        <StorefrontNavbar user={session?.user} products={products} />
 
         <main className="flex-1 max-w-5xl mx-auto w-full p-4 lg:p-6 pb-32">
-          <Link href="/" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 mb-6 font-medium transition-colors">
-            <ArrowLeft className="w-5 h-5" /> Trở về Menu
-          </Link>
+          <Breadcrumb className="mb-6">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/">Trang chủ</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href={`/#cat-${product.category.slug}`}>{product.category.name}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{product.name}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
 
           <div className="flex flex-col md:flex-row gap-8 items-start">
             <div className="w-full md:w-1/2 aspect-square md:aspect-[1/1] bg-neutral-200 rounded-3xl overflow-hidden shadow-sm relative sticky top-6">
@@ -47,6 +68,6 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
           </div>
         </main>
       </div>
-    </CartProvider>
+
   );
 }

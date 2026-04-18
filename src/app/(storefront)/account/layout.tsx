@@ -2,7 +2,6 @@ import { NavbarContainer } from "@/components/NavbarContainer";
 import { Suspense } from "react";
 import { User, ShoppingBag } from "lucide-react";
 import { AccountNavLink } from "./_components/AccountNavLink";
-import { CartProvider } from "@/components/CartProvider";
 import { verifySession } from "@/lib/dal";
 import { redirect } from "next/navigation";
 
@@ -16,7 +15,6 @@ export default async function AccountLayout({
   if (!session) redirect("/login")
 
   return (
-    <CartProvider>
       <div className="min-h-screen bg-neutral-50 pb-20">
         <Suspense fallback={<div className="h-16 border-b bg-white" />}>
           <NavbarContainer />
@@ -44,6 +42,6 @@ export default async function AccountLayout({
           </div>
         </main>
       </div>
-    </CartProvider>
+
   );
 }
